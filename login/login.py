@@ -6,13 +6,14 @@ import time
 
 
 class Login:
-    def __init__(self, url, code):
+    def __init__(self, url, code, userId, mPin):
         self.url = url
         self.code = code
         self.web_driver = None
+        self.userId = userId
+        self.mPin = mPin
 
     def login(self):
-
         # Initial panel
         web_driver = webdriver.Chrome()
         web_driver.implicitly_wait(10)
@@ -35,7 +36,7 @@ class Login:
 
         # user_id
         user_id = web_driver.find_element(byi, "userid")
-        user_id.send_keys("instamobasir23@gmail.com")
+        user_id.send_keys(self.userId)
         time.sleep(2)
 
         # org_selection
@@ -48,12 +49,12 @@ class Login:
 
         # user_mpin
         mpin = web_driver.find_element(byi, "digit")
-        mpin.send_keys("1")
+        mpin.send_keys(self.mPin)
 
         for i in range(2, 5):
             values = f"digit-{i}"
             mpin2 = web_driver.find_element(byi, values)
-            mpin2.send_keys("1")
+            mpin2.send_keys("0")
 
         # login_button
         log_btn = web_driver.find_element(byi, "submitBtn")

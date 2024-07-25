@@ -1,3 +1,5 @@
 class Config:
-    BASE_URl = "https://biopasstest.com:9072/login"
-    ORG_CODE = "888744"
+    BASE_URl = "https://truntrance.biocubetechnology.com/login"
+    ORG_CODE = "390503"
+    MPIN = "0"
+    USERID = "be@gmail.com"

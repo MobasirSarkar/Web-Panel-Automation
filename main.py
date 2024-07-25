@@ -6,8 +6,10 @@ import time
 def main():
     url = Config.BASE_URl
     code = Config.ORG_CODE
+    userId = Config.USERID
+    mPin = Config.MPIN
 
-    web_driver = Login(url, code)
+    web_driver = Login(url, code, userId, mPin)
     web_driver.run()
 
 

@@ -1,4 +1,3 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -6,16 +5,16 @@ import time
 
 
 class Login:
-    def __init__(self, url, code, userId, mPin):
+    def __init__(self, url, code, userId, mPin, driver):
         self.url = url
         self.code = code
-        self.web_driver = None
+        self.driver = driver
         self.userId = userId
         self.mPin = mPin
 
     def login(self):
         # Initial panel
-        web_driver = webdriver.Chrome()
+        web_driver = self.driver
         web_driver.implicitly_wait(10)
         web_driver.get(self.url)
         byi = By.ID
@@ -42,7 +41,6 @@ class Login:
         # org_selection
         org_select_click = web_driver.find_element(byi, "role_name")
         org_select_click.click()
-        time.sleep(4)
         org_select = Select(web_driver.find_element(byi, "role_name"))
         org_select.select_by_value("2")
         time.sleep(1)
@@ -59,10 +57,7 @@ class Login:
         # login_button
         log_btn = web_driver.find_element(byi, "submitBtn")
         log_btn.click()
-
-        # driver quit
-        time.sleep(4)
-        web_driver.quit()
+        time.sleep(2)
 
     def run(self):
         Login.login(self)

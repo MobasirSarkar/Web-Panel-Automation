@@ -1,6 +1,7 @@
 from selenium import webdriver
 from Panels.attendance import Attendance
 from Panels.devicegate import DeviceGate
+from Panels.logout import LogOut
 from Panels.view_manage.run import ViewManage
 from config import Config
 from login.login import Login
@@ -27,6 +28,9 @@ def main():
     device_gate_panel.gatedevice("778", gate_name, gate_id)
     viewManage = ViewManage(driver)
     viewManage.viewManagePanel()
+    logout = LogOut(driver)
+    logout.logout()
+    driver.quit()
 
 
 if __name__ == "__main__":

@@ -15,7 +15,6 @@ class Login:
     def login(self):
         # Initial panel
         web_driver = self.driver
-        web_driver.implicitly_wait(10)
         web_driver.get(self.url)
         byi = By.ID
         byx = By.XPATH
@@ -27,7 +26,7 @@ class Login:
         time.sleep(2)
 
         # continue_panel
-        web_driver.implicitly_wait(2)
+        web_driver.implicitly_wait(5)
         con_panel = web_driver.find_element(
             byx, "//*[@id='companySelModal']/div/div/div/div[2]/div/button"
         )

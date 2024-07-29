@@ -1,15 +1,17 @@
 import random, time
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 # from selenium import webdriver
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import Select, WebDriverWait
 
 
-class BranchMange:
+class BranchManage:
     def __init__(self, driver):
         self.driver = driver
 
     def branch(self):
+        wait = WebDriverWait(self.driver, 10)
 
         # click on the branch section
         branch_select = self.driver.find_element(
@@ -23,8 +25,10 @@ class BranchMange:
         add_branch_btn.click()
         self.driver.implicitly_wait(1)
         branch_code = self.driver.find_element(By.ID, "branch_code")
-        branch_code_gen = f"branch{str(random.randint(0,9))}"
-        branch_code.send_keys(branch_code_gen)
+        random_gen = random.randint(20, 40)
+        branch_code_gen = f"branch{str(random_gen)}"
+        branch_code_var = branch_code_gen
+        branch_code.send_keys(branch_code_var)
 
         # select country
         self.driver.find_element(By.ID, "country-dropdown").click()
@@ -65,14 +69,11 @@ class BranchMange:
             By.XPATH, "//*[@id='branchId']/div/div[2]/button"
         )
         add_button.click()
-        time.sleep(3)
+        time.sleep(6)
 
         # search branch by code
-        try:
-            code_input = self.driver.find_element(By.ID, "branchcode")
-            code_input.send_keys(branch_code_gen)
-        except Exception as e:
-            print(e)
+        branch_id = self.driver.find_element(By.ID, "branchcode")
+        branch_id.send_keys(branch_code_var)
         search_btn = self.driver.find_element(
             By.XPATH, "//*[@id='branchsearch']/div/div[6]/button"
         )

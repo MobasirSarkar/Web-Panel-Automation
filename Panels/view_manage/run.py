@@ -1,6 +1,7 @@
 # from selenium import webdriver
 from selenium.webdriver.common.by import By
-from Panels.view_manage.branchMange import BranchMange
+from Panels.view_manage.branchManage import BranchManage
+import time
 
 
 class ViewManage:
@@ -13,5 +14,6 @@ class ViewManage:
             By.XPATH, "//*[@id='sidenavAccordion']/div/div/a[6]"
         )
         view_manage_btn.click()
-        brMang = BranchMange(driver)
+        brMang = BranchManage(driver)
         brMang.branch()
+        time.sleep(1)
